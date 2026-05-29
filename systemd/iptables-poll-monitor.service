@@ -1,0 +1,15 @@
+# /etc/systemd/system/iptables-poll-monitor.service
+[Unit]
+Description=IPTables event monitor (poll-based)
+After=network.target rsyslog.service
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/iptables-monitor/config.env
+ExecStart=/usr/bin/python3 nuestra_ruta_del_script_poll
+Restart=on-failure
+RestartSec=3
+User=root
+
+[Install]
+WantedBy=multi-user.target
