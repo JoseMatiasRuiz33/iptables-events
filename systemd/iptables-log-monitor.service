@@ -1,0 +1,15 @@
+# /etc/systemd/system/iptables-log-monitor.service
+[Unit]
+Description=IPTables event monitor (log-based)
+After=network.target rsyslog.service
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/iptables-monitor/config.env
+ExecStart=/usr/bin/python3 nuestra_ruta_del_script_log
+Restart=on-failure
+RestartSec=3
+User=root
+
+[Install]
+WantedBy=multi-user.target
